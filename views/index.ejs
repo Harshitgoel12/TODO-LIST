@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            min-height: 100vh;
+            width: 100vw;
+         background-color: aqua;
+         display: flex;
+         padding-top: 3rem;
+         align-items: center;
+        flex-direction: column;
+        }
+        .formcontainer{
+            height: 210px;
+            width: 500px;
+            background-color: brown;
+            border-radius: 10px;
+             display: flex;
+             overflow: hidden;
+             justify-content: center;
+             align-items: center;
+             flex-direction: column;
+             padding: 30px;
+        }
+        input{
+            width: 100%;
+            height: 40px;
+            font-size: 16px;
+             font-family: cursive;
+             border-radius: 10px ;
+             border: none;
+             padding-left: 6px;
+        }
+        textarea{
+            width: 100%;
+            height: 80px;
+            resize: none;
+            border-radius: 10px;
+            border: none;
+            margin-top: 10px;
+            font-family: cursive;
+            font-size: 16px;
+            padding-top: 5px;
+        }
+       .formcontainer button{
+            height: 40px;
+            width: 100px;
+           background-color: rgb(43, 43, 200);
+           color: white;
+           border-radius: 10px;
+           font-size: 13px;
+            position: relative;
+            left: 200px;
+            top: 10px;
+        }
+        .container-notes{
+            min-height: 150px;
+            width: 250px;
+            text-align: center;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            margin-left: 30px;
+            background-color: white;
+            border-radius: 20px;
+            font-family: sans-serif;
+            margin-bottom: 16px;
+        }
+        .cont button{
+            height: 35px;
+            width: 70px;
+           background-color: rgb(43, 43, 200);
+           color: white;
+           border-radius: 10px;
+           font-size: 13px;
+           margin-top: 20px;
+           margin-bottom: 20px;
+        }
+        p{
+            padding-top: 10px;
+        }
+        .parent{
+            padding-top: 40px;
+            display: flex;
+            flex-direction: row;
+            margin-left: 10px;
+            flex-wrap: wrap;
+            width: 100vw;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="formcontainer">
+    <form action="/create" method="post">
+        <input type="text" name="title" placeholder="Enter title">
+        <textarea name="discription" id="" placeholder="Enter the discription">
+        </textarea>
+        <button type="submit">Create</button>
+    </form>
+</div>
+<div class="parent">
+<% for(let i=0;i<d.length;i++){ %>
+<div class="container-notes">
+    <h2><%=d[i].title%></h2>
+     <p><%= d[i].discription %></p>
+     <div class="cont">
+        <form action="/delete/<%= d[i]._id %>" method="POST" style="display: inline;">
+            <button type="submit" style="text-decoration: none;">Delete</button>
+          </form>
+    <form action="/update/<%= d[i]._id %>" method="POST" style="display: inline;">
+     <button type="submit">Update</button>
+    </form>
+    </div>
+</div>
+
+<% }%>
+</div>
+</div>
+</body>
+</html>
